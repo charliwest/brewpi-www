@@ -107,6 +107,20 @@ BR.crystal { clear:both; }
     background-color:rgba(170, 170, 170, 0.5);
     border:1px solid rgba(170, 170, 170, 1);
 }
+.beer-chart-legend-row .toggle.spinTemp{
+    background-color:rgba(255, 0, 0, 0.5);
+    border:1px solid rgba(255, 0, 0, 1);
+}
+
+.beer-chart-legend-row .toggle.spinBatt{
+    background-color:rgba(255, 0, 0, 0.5);
+    border:1px solid rgba(255, 0, 0, 1);
+}
+
+.beer-chart-legend-row .toggle.spinSG{
+    background-color:rgba(255, 0, 0, 0.5);
+    border:1px solid rgba(255, 0, 0, 1);
+}
 .beer-chart-legend-row .toggle.inactive{
     background-color:white;
 }
