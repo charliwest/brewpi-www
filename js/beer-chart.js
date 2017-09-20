@@ -52,7 +52,7 @@ var chartColors = [
     '#AAAAAA',
     '#AAAAAA',
     '#AAAAAA',
-    'rgb(153,0,153
+    'rgb(153,0,153)',
     'red',
     'lime',
     'black',
@@ -306,9 +306,9 @@ function showChartLegend(e, x, pts, row, g) {
     $('.beer-chart-legend-row.log1Temp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('log1Temp'))) );
     $('.beer-chart-legend-row.log2Temp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('log2Temp'))) );
     $('.beer-chart-legend-row.log3Temp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('log3Temp'))) );
-    $('.beer-chart-legend-row.spinTemp .beer-chart-legend-value').text( formatForChartLegend(currentDataSet.getValue(g.indexFromSetName('spinTemp'))) );
-    $('.beer-chart-legend-row.spinSG .beer-chart-legend-value').text( formatForChartLegend(currentDataSet.getValue(g.indexFromSetName('spinSG'))) );
-    $('.beer-chart-legend-row.spinBatt .beer-chart-legend-value').text( formatForChartLegend(currentDataSet.getValue(g.indexFromSetName('spinBatt'))) );
+    $('.beer-chart-legend-row.spinTemp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinTemp'))) );
+    $('.beer-chart-legend-row.spinSG .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinSG'))) );
+    $('.beer-chart-legend-row.spinBatt .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinBatt'))) );
     var state = getState(g, row);
     if ( state !== undefined && !isNaN(state) ) {
         $('.beer-chart-legend-row.state .beer-chart-legend-label').text(STATES[state].text);
