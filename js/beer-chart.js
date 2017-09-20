@@ -60,7 +60,7 @@ var chartColors = [
     'orange',
     'darkblue',
     'yellow',
-    'orchid')'
+    'orchid'
 ];
 
 var legendStorageKeyPrefix = "legendLine_";
