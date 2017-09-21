@@ -37,32 +37,31 @@ var lineNames = {
     beerSet: 'Beer setting',
     fridgeTemp: 'Fridge temperature',
     fridgeSet: 'Fridge setting',
-    log1Temp: 'Log1 temperature',
-    log2Temp: 'Log2 temperature',
-    log3Temp: 'Log3 temperature',
     spinTemp: 'iSpindel Temp.',
     spinBatt: 'iSpindel Battery',
     spinSG: 'iSpindel SG',
+    log1Temp: 'Log1 temperature',
+    log2Temp: 'Log2 temperature',
+    log3Temp: 'Log3 temperature'
 };
 var chartColors = [ 
     'rgb(41,170,41)',
     'rgb(240, 100, 100)',
     'rgb(89, 184, 255)',
     'rgb(255, 161, 76)',
-    '#AAAAAA',
-    '#AAAAAA',
-    '#AAAAAA',
     'rgb(153,0,153)',
-    'red',
     'lime',
-    'black',
+    'lime',
+    'purple',
     'purple',
     'orange',
-    'darkblue',
-    'yellow',
-    'orchid'
+    'orange',
+    '#AAAAAA',
+    '#AAAAAA',
+    '#AAAAAA'
 ];
 
+var ISPINDEL_COLUMNS = 6;
 var legendStorageKeyPrefix = "legendLine_";
 var STATE_LINE_WIDTH = 15;
 
@@ -115,7 +114,7 @@ function getState(g, row) {
     "use strict";
     // state is not a series in the chart, so we cannot use indexFromSetName
     // state is always the last column in the raw data set, so we can use that
-    return (row>= g.numRows()) ? 0 : g.getValue(row, g.numColumns()-1);
+    return (row>= g.numRows()) ? 0 : g.getValue(row, g.numColumns()-1 - ISPINDEL_COLUMNS);
 }
 
 /**
@@ -302,13 +301,14 @@ function showChartLegend(e, x, pts, row, g) {
     $('.beer-chart-legend-row.beerTemp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('beerTemp'))));
     $('.beer-chart-legend-row.beerSet .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('beerSet'))) );
     $('.beer-chart-legend-row.fridgeTemp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('fridgeTemp'))));
-    $('.beer-chart-legend-row.fridgeSet .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('fridgeSet'))) );
+    $('.beer-chart-legend-row.fridgeSet .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('fridgeSet'))) );    
+    $('#curr-beer-chart-legend .beer-chart-legend-row.spinTemp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinTemp'))) );
+    $('#curr-beer-chart-legend .beer-chart-legend-row.spinSG .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinSG'))) );
+    $('#curr-beer-chart-legend .beer-chart-legend-row.spinBatt .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinBatt'))) );
     $('.beer-chart-legend-row.log1Temp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('log1Temp'))) );
     $('.beer-chart-legend-row.log2Temp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('log2Temp'))) );
     $('.beer-chart-legend-row.log3Temp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('log3Temp'))) );
-    $('.beer-chart-legend-row.spinTemp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinTemp'))) );
-    $('.beer-chart-legend-row.spinSG .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinSG'))) );
-    $('.beer-chart-legend-row.spinBatt .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinBatt'))) );
+
     var state = getState(g, row);
     if ( state !== undefined && !isNaN(state) ) {
         $('.beer-chart-legend-row.state .beer-chart-legend-label').text(STATES[state].text);
