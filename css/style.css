@@ -81,9 +81,10 @@ button#maintenance{
 	float: left;
 }
 
+/* Expanding a little to show new editions */
 #beer-panel{
-	width: 980px;
-    height: 525px;
+	width: 990px;
+    height: 580px;
 	margin-bottom: 10px;
     float:left;
 }
