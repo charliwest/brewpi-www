@@ -106,8 +106,8 @@ BR.crystal { clear:both; }
 }
 
 .beer-chart-legend-row .toggle.spinSG{
-    background-color:rgba(0, 255, 0, 0.5);
-    border:1px solid rgba(0, 255, 0, 1);
+    background-color:rgba(128, 0, 128, 0.5);
+    border:1px solid rgba(128, 0, 128, 1);
 }
 .beer-chart-legend-row .toggle.log1Temp{
     background-color:rgba(170, 170, 170, 0.5);
