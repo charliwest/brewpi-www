@@ -45,23 +45,22 @@ var lineNames = {
     log3Temp: 'Log3 temperature'
 };
 var chartColors = [ 
-    'rgb(41,170,41)',
+    'rgb(41, 170, 41)',
     'rgb(240, 100, 100)',
     'rgb(89, 184, 255)',
     'rgb(255, 161, 76)',
-    'rgb(153,0,153)',
-    'lime',
-    'lime',    
-    'orange',
-    'orange',
-    'purple',
-    'purple',
+    'rgb(128, 0, 128)',
+    'rgb(128, 0, 128)',
+    'rgb(242, 92, 150)',
+    'rgb(242, 92, 150)',
+    'rgb(105, 98, 92)',
+    'rgb(105, 98, 92)',
     '#AAAAAA',
     '#AAAAAA',
     '#AAAAAA'
 ];
 
-var ISPINDEL_COLUMNS = 6;
+var ISPINDEL_COLUMNS = 3;
 var legendStorageKeyPrefix = "legendLine_";
 var STATE_LINE_WIDTH = 15;
 
@@ -294,6 +293,15 @@ function formatForChartLegend(v) {
     }
     return "--";
 }
+function formatForChartLegendSG(v) {
+    "use strict";
+    var val = parseFloat(v);
+    if ( !isNaN(val) ) {
+        return val.toFixed(3);
+
+    }
+    return "--";
+}
 function showChartLegend(e, x, pts, row, g) {
     "use strict";
     var time = profileTable.formatDate(new Date(x)).display;
@@ -302,13 +310,12 @@ function showChartLegend(e, x, pts, row, g) {
     $('.beer-chart-legend-row.beerSet .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('beerSet'))) );
     $('.beer-chart-legend-row.fridgeTemp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('fridgeTemp'))));
     $('.beer-chart-legend-row.fridgeSet .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('fridgeSet'))) );    
-    $('#curr-beer-chart-legend .beer-chart-legend-row.spinTemp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinTemp'))) );
-    $('#curr-beer-chart-legend .beer-chart-legend-row.spinSG .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinSG'))) );
-    $('#curr-beer-chart-legend .beer-chart-legend-row.spinBatt .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinBatt'))) );
+    $('.beer-chart-legend-row.spinTemp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinTemp'))) );
+    $('.beer-chart-legend-row.spinSG .beer-chart-legend-value').text( formatForChartLegendSG(g.getValue(row, g.indexFromSetName('spinSG'))) );
+    $('.beer-chart-legend-row.spinBatt .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinBatt'))) );
     $('.beer-chart-legend-row.log1Temp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('log1Temp'))) );
     $('.beer-chart-legend-row.log2Temp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('log2Temp'))) );
     $('.beer-chart-legend-row.log3Temp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('log3Temp'))) );
-
     var state = getState(g, row);
     if ( state !== undefined && !isNaN(state) ) {
         $('.beer-chart-legend-row.state .beer-chart-legend-label').text(STATES[state].text);
