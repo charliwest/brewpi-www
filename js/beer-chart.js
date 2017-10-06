@@ -53,11 +53,12 @@ var chartColors = [
     'rgb(128, 0, 128)',
     'rgb(242, 92, 150)',
     'rgb(242, 92, 150)',
-    'rgb(105, 98, 92)',
-    'rgb(105, 98, 92)',
+    'rgb(230, 220, 0)',
+    'rgb(230, 220, 0)',
     '#AAAAAA',
     '#AAAAAA',
-    '#AAAAAA'
+    '#AAAAAA',
+    'rgb(153,0,153)'
 ];
 
 var ISPINDEL_COLUMNS = 3;
@@ -311,8 +312,8 @@ function showChartLegend(e, x, pts, row, g) {
     $('.beer-chart-legend-row.fridgeTemp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('fridgeTemp'))));
     $('.beer-chart-legend-row.fridgeSet .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('fridgeSet'))) );    
     $('.beer-chart-legend-row.spinTemp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinTemp'))) );
-    $('.beer-chart-legend-row.spinSG .beer-chart-legend-value').text( formatForChartLegendSG(g.getValue(row, g.indexFromSetName('spinSG'))) );
     $('.beer-chart-legend-row.spinBatt .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('spinBatt'))) );
+    $('.beer-chart-legend-row.spinSG .beer-chart-legend-value').text( formatForChartLegendSG(g.getValue(row, g.indexFromSetName('spinSG'))) );
     $('.beer-chart-legend-row.log1Temp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('log1Temp'))) );
     $('.beer-chart-legend-row.log2Temp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('log2Temp'))) );
     $('.beer-chart-legend-row.log3Temp .beer-chart-legend-value').text( formatForChartLegend(g.getValue(row, g.indexFromSetName('log3Temp'))) );
@@ -380,6 +381,10 @@ function drawBeerChart(beerToDraw, div){
         var tempFormat = function(y) {
             return parseFloat(y).toFixed(2) + "\u00B0 " + window.tempFormat;
         };
+        var gravityFormat = function(y) {
+            return parseFloat(y).toFixed(3);
+        };
+
         var that = this; // capture scope;
         this.beerChart = new Dygraph(document.getElementById(div),
                 beerData.values, {
@@ -394,8 +399,24 @@ function drawBeerChart(beerToDraw, div){
                 displayAnnotationsFilter:true,
                 //showRangeSelector: true,
                 strokeWidth: 1,
-                axes: {
-                    y : { valueFormatter: tempFormat }
+                series: {
+                    'spinTemp' : {
+                        axis: 'y1',
+                        },
+                    'spinBatt' : {
+                        axis: 'y2',
+                        },
+                    'spinSG' : {
+                        axis: 'y2',
+                        }
+                },
+               axes: {
+                    y : { valueFormatter: tempFormat },
+                    y2 : {
+                        valueFormatter: gravityFormat,
+                        axisLabelFormatter: gravityFormat,
+                        valueRange: [0.990, null]
+                    }
                 },
                 highlightCircleSize: 2,
                 highlightSeriesOpts: {

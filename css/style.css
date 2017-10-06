@@ -90,13 +90,13 @@ button#maintenance{
 }
 
 #top-bar{
-	width: 968px;
+	width: 978px;
 	margin: 5px;
     float:left;
 }
 
 #control-panel{
-	width: 976px;
+	width: 986px;
     min-height: 390px;
     float: left;
 }
