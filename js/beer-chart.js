@@ -42,7 +42,7 @@ var lineNames = {
     spinSG: 'iSpindel SG',
     log1Temp: 'Log1 temperature',
     log2Temp: 'Log2 temperature',
-    log3Temp: 'Log3 temperature'
+    log3Temp: 'Log3 temperature',
 };
 var chartColors = [ 
     'rgb(41, 170, 41)',
