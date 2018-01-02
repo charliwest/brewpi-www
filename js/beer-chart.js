@@ -401,13 +401,13 @@ function drawBeerChart(beerToDraw, div){
                 strokeWidth: 1,
                 series: {
                     'spinTemp' : {
-                        axis: 'y1',
+                        axis: 'y1'
                         },
                     'spinBatt' : {
-                        axis: 'y2',
+                        axis: 'y2'
                         },
                     'spinSG' : {
-                        axis: 'y2',
+                        axis: 'y2'
                         }
                 },
                axes: {
