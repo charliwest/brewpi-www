@@ -9,8 +9,9 @@ body {
 	background: #fff;
 	color: #000;
 	font-family: Verdana, Arial, sans-serif;
-	width:980px;
+	width:100%;
     font-size: 12px;
+	margin: 1%;
 }
 
 #top-bar button.script-status{
@@ -53,9 +54,11 @@ button#maintenance{
 
 
 #status-message{
-	width: 400px;
+	width: calc(100% - 1.8em);
+	max-width: 400px;
 	padding: 0.5em 0.8em;
 	float: right;
+	margin: auto;
 }
 
 #status-message p{
@@ -81,22 +84,22 @@ button#maintenance{
 	float: left;
 }
 
-/* Expanding a little to show new editions */
 #beer-panel{
-	width: 990px;
-    height: 580px;
+	width: 98%;
+    height: auto;
 	margin-bottom: 10px;
     float:left;
 }
 
 #top-bar{
-	width: 968px;
-	margin: 5px;
-    float:left;
+	width: 99%;
+	margin: 0.5%;
+	float:left;
+	position: relative;
 }
 
 #control-panel{
-	width: 976px;
+	width: calc(98% - .4em);
     min-height: 390px;
     float: left;
 }
@@ -128,7 +131,8 @@ button#maintenance{
 	border: #555 solid 2px;
 	overflow:auto;
 	width:240px;
-	margin-left: 330px;
+	margin-left: auto;
+	margin-right: auto;
 	margin-top: 40px;
 }
 
@@ -581,16 +585,17 @@ button#maintenance{
 
 #logo-container{
 	float: left;
+	clear: none;
 	display: block;
 	margin-top: 10px;
-	width: 300px;
+	width: 100%;
 	text-align: center;
 }
 
 #logo-container div#beer-name-container{
 	float: left;
 	display: block;
-	line-height: 0.5em;
+	line-height: 1.5em;
 	color: #000;
 	width: inherit;
 	margin-top: 10px;
@@ -661,6 +666,11 @@ span.dialog-result-message{
 div.beer-chart,
 div.chart-container{
     float: left;
+	width: 100%;
+}
+
+div.chart-container > div {
+	height: auto;
 }
 
 div.chart-error{
@@ -728,14 +738,14 @@ button.chart-error-refresh{
 #profileSelect li { margin: 3px; padding: 0.4em; height: 18px; }
 #profileSelectChartDiv{ width: 450px; height: 280px; float: left; margin: 20px 0;}
 
-#profileNameDate { width: 375px; float:right; }
+#profileNameDate { width: 100%; float:right; }
 #profileNameDate div { float:left; clear: left; width:100%;}
 #profileNameDate .profileTableLabel { display: block; float: left; font-weight: bold; margin-left: 5px}
 #profileNameDate .profileTableValue { display: block; float: right; margin-right:5px; }
 
-#profileChartDiv { width: 430px; height: 280px; float: left; }
+#profileChartDiv { width: calc(100% - 108px); height: 280px; float: left; }
 
-#profileTableDiv { width: 375px; height: 280px; float: right; overflow: auto; }
+#profileTableDiv { width: 100%; height: 280px; float: right; overflow: auto; }
 #profileTableDiv table {
     border-collapse:separate; border-spacing: 0;
 }

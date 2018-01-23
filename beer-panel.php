@@ -16,21 +16,28 @@
  * along with BrewPi.  If not, see <http://www.gnu.org/licenses/>.
  */
 ?>
-<div id="top-bar" class="ui-widget ui-widget-header ui-corner-all">
-	<div id="logo-container">
-		<img src="brewpi_logo.png">
-		<div id=beer-name-container>
-			<span>Fermenting: </span><a href='#' id="beer-name"><?php echo urldecode($beerName);?></a>
-			<span class="data-logging-state"></span>
+<div id="top-bar" class="ui-widget ui-widget-header ui-corner-all section group">
+	<div class="col span_4_of_12">
+		<div id="logo-container">
+			<img src="brewpi_logo.png" width="200" height="55">
+			<div id=beer-name-container>
+				<span>Fermenting: </span><a href='#' id="beer-name"><?php echo urldecode($beerName);?></a>
+				<span class="data-logging-state"></span>
+			</div>
 		</div>
 	</div>
 	<div class="temperatures-container"></div>
-	<button class="script-status ui-state-error"></button>
-	<button id="maintenance" class="ui-state-default">Maintenance panel</button>
+	<div class="col span_4_of_12" id="status-buttons">
+		<button class="script-status ui-state-error"></button>
+		<button id="maintenance" class="ui-state-default">Maintenance panel</button>
+        </div>
 </div>
 <div class="chart-container">
-    <div id="curr-beer-chart-label" class="beer-chart-label"></div>
-    <div id="curr-beer-chart" class="beer-chart" style="width:815px; height:390px"></div>
+	<div class="col span_10_of_12">
+		<div id="curr-beer-chart-label" class="beer-chart-label"></div>
+		<div id="curr-beer-chart" class="beer-chart" style="width:815px; height:390px"></div>
+	</div>
+    <div class="col span_2_of_12">
 	<div id="curr-beer-chart-controls" class="beer-chart-controls" style="display: none">
 	    <div id="curr-beer-chart-buttons" class="beer-chart-buttons">
 	    	<div class="beer-chart-legend-row">
@@ -72,24 +79,24 @@
 	    		<div class="beer-chart-legend-value">--</div>
 	    		<br class="crystal" />
 	    	</div>
-				<div class="beer-chart-legend-row log1Temp">
+		<div class="beer-chart-legend-row log1Temp">
 				<div class="toggle log1Temp" onClick="toggleLine(this)"></div>
-					<div class="beer-chart-legend-label" onClick="toggleLine(this)">Log1 Temp</div>
-					<div class="beer-chart-legend-value">--</div>
-					<br class="crystal" />
-				</div>
+			<div class="beer-chart-legend-label" onClick="toggleLine(this)">Log1 Temp</div>
+			<div class="beer-chart-legend-value">--</div>
+			<br class="crystal" />
+		</div>
 				<div class="beer-chart-legend-row log2Temp">
-				<div class="toggle log2Temp" onClick="toggleLine(this)"></div>
-					<div class="beer-chart-legend-label" onClick="toggleLine(this)">Log2 Temp</div>
-					<div class="beer-chart-legend-value">--</div>
-					<br class="crystal" />
-				</div>
+			<div class="toggle log2Temp" onClick="toggleLine(this)"></div>
+			<div class="beer-chart-legend-label" onClick="toggleLine(this)">Log2 Temp</div>
+			<div class="beer-chart-legend-value">--</div>
+			<br class="crystal" />
+		</div>
 				<div class="beer-chart-legend-row log3Temp">
-				<div class="toggle log3Temp" onClick="toggleLine(this)"></div>
-					<div class="beer-chart-legend-label" onClick="toggleLine(this)">Log3 Temp</div>
-					<div class="beer-chart-legend-value">--</div>
-					<br class="crystal" />
-				</div>
+			<div class="toggle log3Temp" onClick="toggleLine(this)"></div>
+			<div class="beer-chart-legend-label" onClick="toggleLine(this)">Log3 Temp</div>
+			<div class="beer-chart-legend-value">--</div>
+			<br class="crystal" />
+		</div>
             <!-- Adding Hydrometer lines -->
                 <div class="beer-chart-legend-row spinTemp">
                                 <div class="toggle spinTemp" onClick="toggleLine(this)"></div>
@@ -103,15 +110,13 @@
                         <div class="beer-chart-legend-value">--</div>
                         <br class="crystal" />
                 </div>
-
                 <div class="beer-chart-legend-row spinBatt">
                                 <div class="toggle spinBatt" onClick="toggleLine(this)"></div>
                         <div class="beer-chart-legend-label" onClick="toggleLine(this)">iSpindel Batt</div>
                         <div class="beer-chart-legend-value">--</div>
                         <br class="crystal" />
                 </div>
-		    
-	    	<div class="beer-chart-legend-row state">
+ 	    	<div class="beer-chart-legend-row state">
 				<div class="state-indicator"></div>
 	    		<div class="beer-chart-legend-label"></div>
 	    		<br class="crystal" />
@@ -123,6 +128,7 @@
 	    	</div>
 	    </div>
 	</div>
+   </div>
 </div>
 <div id="chart-help-popup" title="Beer graph help" style="display: none">
 	<p>This chart displays all temperatures and state information logged by BrewPi.

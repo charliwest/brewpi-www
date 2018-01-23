@@ -380,6 +380,9 @@ function drawBeerChart(beerToDraw, div){
         var tempFormat = function(y) {
             return parseFloat(y).toFixed(2) + "\u00B0 " + window.tempFormat;
         };
+        var gravityFormat = function(y) {
+            return parseFloat(y).toFixed(3);
+        };
         var that = this; // capture scope;
         this.beerChart = new Dygraph(document.getElementById(div),
                 beerData.values, {
@@ -394,8 +397,28 @@ function drawBeerChart(beerToDraw, div){
                 displayAnnotationsFilter:true,
                 //showRangeSelector: true,
                 strokeWidth: 1,
+                series: {
+                    'spinSG' : {
+                        axis: 'y2',
+                        strokePattern: [7, 3]},
+                    'spinBatt' : {
+                        axis: 'y2',
+                        strokePattern: [7, 3]},
+                    'spinTemp' : {
+                        axis: 'y1',
+                        strokePattern: [7, 3]
+                    }
+                },
+                ylabel: 'Temperature (' + window.tempFormat + ")",
+                y2label: 'Gravity (SG)',
+                yAxisLabelWidth: 50,
                 axes: {
-                    y : { valueFormatter: tempFormat }
+                    y : { valueFormatter: tempFormat },
+                    y2 : {
+                        valueFormatter: gravityFormat,
+                        axisLabelFormatter: gravityFormat,
+                        valueRange: [0.990, null]
+                    }
                 },
                 highlightCircleSize: 2,
                 highlightSeriesOpts: {
@@ -431,7 +454,7 @@ function drawBeerChart(beerToDraw, div){
         }
         this.beerChart.setAnnotations(processedAnnotations);
         this.beerChart.setVisibility(this.beerChart.indexFromSetName('state')-1, 0);  // turn off state line
-        var $chartContainer = $chartDiv.parent();
+        var $chartContainer = $chartDiv.parent().parent();
         $chartContainer.find('.beer-chart-controls').show();
 
         if(div.localeCompare('curr-beer-chart') === 0){
@@ -509,7 +532,7 @@ function toggleLine(el) {
 
 function updateVisibility(lineName, $button){
     "use strict";
-    var $chart = $button.closest('.chart-container').find('.beer-chart');
+    var $chart = $button.closest('.chart-container').closest('.col').find('.beer-chart');
     var chartId = $chart.attr('id');
     var chart;
     if(chartId.localeCompare('curr-beer-chart')===0){
